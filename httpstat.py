@@ -156,6 +156,7 @@ def main():
         time.sleep(1)
         counter += 1
         print(name_lookup_dist)
+        print(counter)
     
     
 def run(name_lookup_dist):
