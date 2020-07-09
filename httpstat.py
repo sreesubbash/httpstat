@@ -14,6 +14,7 @@ import sys
 import logging
 import tempfile
 import subprocess
+import time
 
 
 __version__ = '1.2.1'
@@ -149,12 +150,15 @@ Environments:
 
 def main():
     counter = 0
+    name_lookup_dist = {}
     while True:
-        run()
+        run(name_lookup_dist)
+        time.sleep(1)
         counter += 1
+        print(name_lookup_dist)
     
     
-def run():
+def run(name_lookup_dist):
     args = sys.argv[1:]
     if not args:
         print_help()
@@ -261,6 +265,8 @@ def run():
         range_server=d['time_starttransfer'] - d['time_pretransfer'],
         range_transfer=d['time_total'] - d['time_starttransfer'],
     )
+    
+    name_lookup_dist[d['time_namelookup']] = name_lookup_dist.get(d['time_namelookup'], 0) + 1
 
     # ip
     if show_ip:
