@@ -147,8 +147,14 @@ Environments:
 """[1:-1]
     print(help)
 
-
 def main():
+    counter = 0
+    while True:
+        run()
+        counter += 1
+    
+    
+def run():
     args = sys.argv[1:]
     if not args:
         print_help()
